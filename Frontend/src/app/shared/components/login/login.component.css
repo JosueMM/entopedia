@@ -1,0 +1,37 @@
+.login{
+    background-image: url("/assets/images/grillo.jpg");
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container{
+    margin-top: 200px;
+    width: 28%;
+    background-color: rgba(0, 0, 0, 0.45);
+}
+
+label{
+    color:white;
+}
+
+.btn{
+    width: 100%;
+    margin-bottom: 5px;
+    background-color: rgba(0,0,0, 0.70);
+    color: #FFF;
+}
+
+.btn.focus, .btn:focus{
+    box-shadow: 0 0 0 0.1rem rgba(128,128,128,.25);
+}
+
+.form-control:focus{
+    border-color: rgba(128,128,128,.25);
+    box-shadow: 0 0 0 0.1rem rgba(128,128,128,.25);
+}

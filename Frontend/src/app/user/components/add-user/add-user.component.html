@@ -1,0 +1,195 @@
+<div class="parallax text-white text-center">
+  <app-menu></app-menu>
+  <div class="container">
+    <br>
+    <br>
+    <br>
+    <h1 class="display-1 col-md-12 col-sm-12">Usuarios</h1>
+    <p class="lead">Agrega nuevos Usuarios para que puedan contribuir con la informacion</p>
+  </div>
+</div>
+
+
+<h1 class="display-1 col-md-12 col-sm-12 text-center">Lista de Usuarios</h1>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Primer Apellido</th>
+      <th scope="col">Segundo Apellido</th>
+      <th scope="col">Teléfono</th>
+      <th scope="col">Correo Electrónico</th>
+      <th scope="col">Ocupación</th>
+      <th scope="col">Administrador</th>
+      <th scope="col">Activo</th>
+      <th scope="col"></th>
+      <th scope="col">
+        <button type="button" class="btn" (click)="open(content);">Agregar Usuario</button>
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let user of users">
+      <th scope="row">{{user.id}}</th>
+      <td>{{user.name}}</td>
+      <td>{{user.first_surname}}</td>
+      <td>{{user.second_surname}}</td>
+      <td>{{user.phone_number}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.occupation}}</td>
+      <td *ngIf="user.is_admi;else not_admi">&#10004;</td>
+      <ng-template #not_admi>
+        <td>&#10060;</td>
+      </ng-template>
+      <td *ngIf="user.is_active;else not_active">&#10004;</td>
+      <ng-template #not_active>
+        <td>&#10060;</td>
+      </ng-template>
+      <td>
+        <button type="button" class="btn btn-primary" (click)="editUser(user); open(content);">Editar</button>
+        <button type="button" class="btn btn-danger" (click)="deleteUser(user.id);">Eliminar</button>
+      </td>
+
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Agregar Usuario</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+
+  <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="name">Nombre</label>
+      <div class="col-sm-12">
+        <input type="text" id="name" name="name" class="form-control" [(ngModel)]="current_user.name" #name="ngModel" autofocus required>
+      </div>
+
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+        El nombre es requerido.
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Primer Apellido</label>
+      <div class="col-sm-12">
+        <input type="text" id="first_surname" name="first_surname" class="form-control" [(ngModel)]="current_user.first_surname" #first_surname="ngModel"
+          required>
+      </div>
+      <div [hidden]="first_surname.valid || first_surname.pristine" class="alert alert-danger">
+        El primer apellido es requerido.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="ID Number">Segundo Apellido</label>
+      <div class="col-sm-12">
+        <input type="text" id="second_surname" class="form-control" name="second_surname" [(ngModel)]="current_user.second_surname">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Teléfono</label>
+      <div class="col-sm-12">
+        <input type="text" id="phone_number" name="phone_number" class="form-control" [(ngModel)]="current_user.phone_number" #phone_number="ngModel"
+          required>
+      </div>
+
+      <div [hidden]="phone_number.valid || phone_number.pristine" class="alert alert-danger">
+        El teléfono es requerido.
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label for="Confirm Password">Correo Electrónico</label>
+      <div class="col-sm-12">
+        <input type="text" id="email" name="email" class="form-control" [(ngModel)]="current_user.email" #email="ngModel" required>
+      </div>
+
+      <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+        El email es requerido.
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label for="Confirm Password">Ocupación</label>
+      <div class="col-sm-12">
+        <input type="text" id="ocupation" name="occupation" class="form-control" [(ngModel)]="current_user.occupation" #occupation="ngModel" required>
+      </div>
+
+      <div [hidden]="occupation.valid || occupation.pristine" class="alert alert-danger">
+        La ocupación es requerida.
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label for="password">Contraseña</label>
+      <div class="col-sm-12">
+        <input type="password" id="password" name="password" class="form-control" [(ngModel)]="current_user.password" #password="ngModel" required>
+      </div>
+
+      <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+        La contraseña es requerida.
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label for="password">Repetir Contraseña</label >
+      <div class="col-sm-12">
+        <input type="password" id="repeat_password" name="repeat_password" class="form-control" [(ngModel)]="repeat_password" #repeat_pass="ngModel" required>
+      </div>
+      <div [hidden]="repeat_pass.valid || repeat_pass.pristine" class="alert alert-danger">
+        Repetir contraseña es requerido.
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="form-group">
+        <div class="col-sm-6">
+          <label>Administrador</label>
+          <label class="radio-inline">
+            <input type="radio" id="admi_true" value="1" name="admi" [(ngModel)]="current_user.is_admi">Si
+            <input type="radio" id="admi_false" value="0" name="admi" [(ngModel)]="current_user.is_admi">No
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-8">
+          <label>Activo</label>
+          <label class="radio-inline">
+            <input type="radio" id="active_true" value="1" name="active" [(ngModel)]="current_user.is_active">Si
+            <input type="radio" id="active_false" value="0" name="active" [(ngModel)]="current_user.is_active">No
+          </label>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</form>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="addUser()" [disabled]="!heroForm.form.valid">Guardar</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
+
+
+<hr>

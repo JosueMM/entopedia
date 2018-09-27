@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/inicio">Entopedia</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+    <ul class="navbar-nav d-flex justify-content-md-between">
+      <li class="nav-item " *ngFor="let menu_option of menu_options">
+        <a class="nav-link" routerLink="{{menu_option.link}}">{{menu_option.name}}</a>
+      </li>
+      <div class="nav-item ">
+        <h5>{{this.user.name}} {{this.user.first_surname}}</h5>
+      </div>
+      <button type="button" class="btn btn-outline-dark" (click)="sessionOff();">Close</button>
+    </ul>
+
+
+  </div>
+</nav>

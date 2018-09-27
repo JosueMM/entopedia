@@ -1,0 +1,288 @@
+<div class="parallax text-white text-center">
+
+  <div *ngIf="is_log.id > 0;else no_log">
+    <app-menu></app-menu>
+  </div>
+
+  <ng-template #no_log>
+    <app-initial-menu></app-initial-menu>
+  </ng-template>
+
+  <div class="container">
+    <br>
+    <br>
+    <br>
+    <h1 class="display-1 col-md-12 col-sm-12">Buscar</h1>
+    <p class="lead">Podras buscar toda la informacion que necesites</p>
+    <p>Buscar Informacion</p>
+    <div class="input-group lrcInputs">
+      <input class="form-control search" id="search-text" name="lookfor" [(ngModel)]="buscar" placeholder="Buscar" type="text"
+      />
+      <div class="input-group-btn">
+        <button class="btn btn-success lrcSearchButton" (click)="getSearch();">
+          <i class="glyphicon glyphicon-search"></i>Go</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<br>
+
+<table class="table table-striped custab">
+  <thead>
+    <h2>Resultados</h2>
+    <a *ngIf="isAdmi();" class="nav-link" routerLink="/avance">Avances</a>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Filo</th>
+          <th scope="col">Órden</th>
+          <th scope="col">Familia</th>
+          <th scope="col">Nombre Científico</th>
+          <th scope="col">Nombre Común</th>
+          <th scope="col">
+            <button type="button" class="btn btn-success" (click)="open(add)">Añadir</button>
+          </th>
+
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let inse of insectos">
+          <th scope="row">{{inse.id}}</th>
+          <td>Artrópodo</td>
+          <td>{{inse.order_subphylum}}</td>
+          <td>{{inse.family}}</td>
+          <td>{{inse.scientific_name}}</td>
+          <td>{{inse.common_name}}</td>
+          <td>
+            <button type="button" class="btn btn-primary" (click)="open(content); vermas(inse);">Ver Mas</button>
+          </td>
+
+        </tr>
+
+      </tbody>
+    </table>
+
+
+    <ng-template #content let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title">Informacion</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          {{current_arthropod.subphylum}}
+          <br> {{current_arthropod.order_subphylum}}
+          <br> {{current_arthropod.family}}
+          <br> {{current_arthropod.genus}}
+          <br> {{current_arthropod.specie}}
+          <br> {{current_arthropod.common_name}}
+          <br> {{current_arthropod.scientific_name}}
+          <br> {{current_arthropod.description}}
+          <br> {{current_arthropod.habits}}
+          <br> {{current_arthropod.habitat}}
+          <br> {{current_arthropod.impact_on_humanity}}
+          <br> {{current_arthropod.color}}
+          <br> {{current_arthropod.body_size}}
+          <br>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="downloadPDF()">Descagar como PDF</button>
+        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+      </div>
+    </ng-template>
+
+
+    <ng-template #add let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title">Agregar Artropodo</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+
+
+      <div class="modal-body">
+
+
+        <div class="form-group">
+          <div class="col-sm-4">
+            <label>Subfilo</label>
+            <select id="Select" class="form-control" [(ngModel)]="current_arthropod.subphylum">
+              <option>Hexapoda</option>
+              <option>Chelicerata</option>
+            </select>
+          </div>
+        </div>
+
+        <div [ngSwitch]="current_arthropod.subphylum">
+          <div *ngSwitchCase="'Chelicerata'">
+            <div class="form-group">
+              <div class="col-sm-4">
+                <label>Orden</label>
+                <select id="Select" class="form-control " [(ngModel)]="current_arthropod.order_subphylum">
+                  <option>Araneae</option>
+                  <option>Amblypgy</option>
+                  <option>Scorpiones</option>
+                  <option>Uropygi</option>
+                  <option>Solifugae</option>
+                  <option>Opiliones</option>
+                  <option>Pseudoscorpiones</option>
+
+                </select>
+              </div>
+            </div>
+
+          </div>
+          <div *ngSwitchCase="'Hexapoda'">
+            <div class="form-group">
+              <div class="col-sm-4">
+                <label>Orden</label>
+                <select id="Select" class="form-control" [(ngModel)]="current_arthropod.order_subphylum">
+                  <option>Isoptera</option>
+                  <option>Archaeognata</option>
+                  <option>Siphonaptera</option>
+                  <option>Phtiraptera</option>
+                  <option>Thysanura</option>
+                  <option>Hymenoptera</option>
+                  <option>Phasmatodea</option>
+                  <option>Psocopteros</option>
+                  <option>Hemiptera</option>
+                  <option>Mecoptera</option>
+                  <option>Thysonoptera</option>
+                  <option>Lepidoptera</option>
+                  <option>Diptera</option>
+                  <option>Coleoptera</option>
+                  <option>Ephemoptera</option>
+                  <option>Odonata</option>
+                  <option>Trichoptera</option>
+                  <option>Plecoptera</option>
+                  <option>Megaloptera</option>
+                  <option>Raphidioptera</option>
+                  <option>Neuroptera</option>
+                  <option>Dermaptera</option>
+                  <option>Orthoptera</option>
+                  <option>Blattodea</option>
+                  <option>Mantodea</option>
+                  <option>Zoraptera</option>
+                  <option>Strepsiptera</option>
+
+                </select>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <ng-template [ngIf]="current_arthropod.subphylum === 'Chelicerata'"></ng-template>
+        <ng-template [ngIf]="current_arthropod.subphylum === 'Hexapoda'"></ng-template>
+
+        <div class="form-group">
+          <label for="firstName">Clase</label>
+          <div class="col-sm-12">
+            <input type="text" id="name" class="form-control" [(ngModel)]="current_arthropod.cla_art" required autofocus>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="ID Number">Familia</label>
+          <div class="col-sm-12">
+            <input type="text" id="second_surname" class="form-control" [(ngModel)]="current_arthropod.family">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="Confirm Password">Genero</label>
+          <div class="col-sm-12">
+            <input type="text" id="email" class="form-control" [(ngModel)]="current_arthropod.genus">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="Confirm Password">Especie</label>
+          <div class="col-sm-12">
+            <input type="text" id="ocupation" class="form-control" [(ngModel)]="current_arthropod.specie">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Nombre Comun</label>
+          <div class="col-sm-12">
+            <input type="text" class="form-control" [(ngModel)]="current_arthropod.common_name">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Nombre cientifico</label>
+          <div class="col-sm-12">
+            <input type="text" [(ngModel)]="current_arthropod.scientific_name" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Descripcion</label>
+          <div class="col-sm-12">
+            <textarea class="form-control" id="exampleTextarea" rows="6" [(ngModel)]="current_arthropod.description"></textarea>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Habitos</label>
+          <div class="col-sm-12">
+            <input type="text" [(ngModel)]="current_arthropod.habits" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Habitad</label>
+          <div class="col-sm-12">
+            <input type="text" [(ngModel)]="current_arthropod.habitat" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Impacto en la humanidad</label>
+          <div class="col-sm-12">
+            <input type="text" [(ngModel)]="current_arthropod.impact_on_humanity" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Color</label>
+          <div class="col-sm-12">
+            <input type="text" [(ngModel)]="current_arthropod.color" class="form-control">
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="password">Tamaño del cuerpo</label>
+          <div class="col-sm-12">
+            <input type="text" [(ngModel)]="current_arthropod.body_size" class="form-control">
+          </div>
+        </div>
+
+
+
+        <div class="form-group">
+          <input type="file" id="file" (change)="handleFileInput($event.target.files)" multiple>
+        </div>
+
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="addArthropod();">Guardar</button>
+        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+      </div>
+    </ng-template>

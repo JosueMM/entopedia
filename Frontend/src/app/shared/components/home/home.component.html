@@ -1,0 +1,36 @@
+<div class="parallax ">
+  <app-initial-menu></app-initial-menu>
+  <div class="container text-white text-center">
+    
+    <h1 class="display-1 col-md-12 col-sm-12">Entopedia</h1>
+    <p id="letterTitle">Bienvenidos a Entopedia.</p>
+  </div>
+</div>
+
+<div class="container" id="container-text">
+  <div id="text-margin">
+    <div class="text-center">
+      <h1 class="col-md-12 col-sm-12">Investiga</h1>
+      <h4>En esta página puedes encontrar información sobre ciertos Arthropodos.</h4>
+    </div>
+    <p>Puedes encontrar características como cual es el nombre científico por el que es conocido, a qué órden pertenece, el
+      nombre por el que es habitualmente conocido , que hábitos tienen y otras propiedades interesantes.
+    </p>
+  </div>
+</div>
+
+<div style="width:100%; height:600px;">
+  <ngb-carousel *ngIf="images">
+    <div *ngFor="let image of images">
+      <ng-template ngbSlide>
+        <img [src]="image.src" alt="image.alt">
+        <div class="carousel-caption">
+          <h3 >Nombre científico:</h3><h3 class="cursive"> {{image.name}}</h3>
+          <p>Órden: {{image.orden}}</p>
+        </div>
+      </ng-template>
+    </div>
+  </ngb-carousel>
+</div>
+
+<app-footer></app-footer>

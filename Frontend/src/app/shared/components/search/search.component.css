@@ -1,0 +1,21 @@
+.parallax {
+    /* The image used */
+    background-image: url("https://www.pixelstalk.net/wp-content/uploads/2016/10/Wallpapers-soccer-insects-pozadia-wallper-strana-cool-tapety-images-dragonflies-fresh-fullscreen.jpg");
+ 
+    /* Set a specific height */
+    min-height: 700px; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+
+
+
+
+
+

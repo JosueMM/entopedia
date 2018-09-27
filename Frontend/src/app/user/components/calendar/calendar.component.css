@@ -1,0 +1,29 @@
+@import '../../../../../node_modules/angular-calendar/css/angular-calendar.css';
+
+.parallax {
+    /* The image used */
+    background-image: url("http://hdviewer.com/wp-content/uploads/2017/08/Insects-HD-wallpapers-19.jpg");
+ 
+    /* Set a specific height */
+    min-height: 700px; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+
+
+h3 {
+    margin: 0 0 10px;
+  }
+  
+  pre {
+    background-color: #f5f5f5;
+    padding: 15px;
+  }
+
+ 

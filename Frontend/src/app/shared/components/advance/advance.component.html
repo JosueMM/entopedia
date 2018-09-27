@@ -1,0 +1,53 @@
+<div class="parallax text-white text-center">
+  <app-initial-menu></app-initial-menu>
+  <div class="container">
+    <br>
+    <br>
+    <br>
+    <h1 class="display-1 col-md-12 col-sm-12">Avances</h1>
+    <p class="lead">Los Administradores podran ver los avances de la informacion</p>
+    <p>Buscar Avances</p>
+    <div class="input-group lrcInputs">
+    </div>
+  </div>
+</div>
+<br>
+<div style="margin-right: 1000px; margin-left: 50px;">
+  <h2>Subfilo</h2>
+  <select id="Select" class="form-control" [(ngModel)]="buscar">
+    <option>Hexapoda</option>
+    <option>Chelicerata</option>
+  </select>
+  <br>
+  <button type="button" class="btn btn-outline-dark" (click)="getAdvance()">Buscar</button>
+
+</div>
+<h2>Resultados</h2>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Email</th>
+      <th scope="col">Subfilo</th>
+      <th scope="col">Orden</th>
+      <th scope="col">Nombre Cientifico</th>
+      <th scope="col">Nombre Comun</th>
+      <th scope="col">Dia Agregado</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let inse of avances">
+      <th scope="row">{{inse.id}}</th>
+      <td>{{inse.name}}</td>
+      <td>{{inse.email}}</td>
+      <td>{{inse.subphylum}}</td>
+      <td>{{inse.order_subphylum}}</td>
+      <td>{{inse.scientific_name}}</td>
+      <td>{{inse.common_name}}</td>
+      <td>{{inse.insert_date}}</td>
+    </tr>
+
+  </tbody>
+</table>

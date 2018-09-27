@@ -1,0 +1,31 @@
+.parallax {
+    /* The image used */
+    background-image: url("/assets/images/insect1.jpg");
+ 
+    /* Set a specific height */
+    min-height: 700px; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+#container-text{
+    height: 275px;
+    font-size: 20px;
+}
+
+#letterTitle{
+    font-size: 25px;
+}
+
+#text-margin{
+    margin-top: 40px;
+}
+
+.cursive{
+    font-family: Brush Script MT, Brush Script Std, cursive;
+}
